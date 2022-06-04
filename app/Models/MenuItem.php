@@ -5,17 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Page extends Model
+class MenuItem extends Model
 {
     use HasFactory;
 
-    protected $fillable =[
+    protected $fillable = [
         'title',
         'slug',
-        'content'
+        'type',
+        'target',
+        'menu_id'
     ];
-
-    public function user(){
-        return $this->belongTo('App\Models\User');
-    }
 }

@@ -52,7 +52,7 @@ class PagesController extends Controller
     public function store(WorkWithPage $request)
     {
         Auth::user()->pages()->save(new Page 
-            ($request->only(['title', 'url', 'content'])
+            ($request->only(['title', 'slug', 'content'])
         ));
 
         return redirect()->route('pages.index')
@@ -86,7 +86,7 @@ class PagesController extends Controller
             return redirect()->route('page.index');
         }
 
-        $page->fill($request->only(['title', 'url', 'content']));
+        $page->fill($request->only(['title', 'slug', 'content']));
 
         $page->save();
 

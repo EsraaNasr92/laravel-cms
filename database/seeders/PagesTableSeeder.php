@@ -22,19 +22,19 @@ class PagesTableSeeder extends Seeder
         $admin->pages()->saveMany([
             new Page([
                 'title' => 'About',
-                'url' => '/about',
+                'slug' => '/about',
                 'content' => 'This is about us page'
 
             ]),
             new Page([
                 'title' => 'Contact',
-                'url' => '/contact',
+                'slug' => '/contact',
                 'content' => 'This is contact us page'
 
             ]),
             new Page([
                 'title' => 'Another Pages',
-                'url' => '/another-pages',
+                'slug' => '/another-pages',
                 'content' => 'This is Another Pages'
 
             ]),

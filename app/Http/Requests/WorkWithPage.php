@@ -25,7 +25,7 @@ class WorkWithPage extends FormRequest
     {
         return [
             'title' => 'required',
-            'url' => 'required',
+            'slug' => 'required',
             'content' => 'required'
         ];
     }

@@ -25,7 +25,7 @@
                     @foreach($pages as $page)
                     <tr>
                         <td> {{ $page -> title}}</td>
-                        <td> {{ $page -> url}}</td>
+                        <td> {{ $page -> slug}}</td>
                         <td> 
                             <a href="{{ route('pages.edit', ['page' => $page->id] ) }}">Edit</a> | 
                             <form action="{{ route('pages.destroy',$page->id) }}" method="POST" >

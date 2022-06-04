@@ -22,6 +22,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
 
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+
+
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sortable/0.9.13/jquery-sortable.js"></script>
+
+    
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
 
 </head>
 <body>
@@ -82,6 +96,10 @@
                                 <li class="nav-item">
                                     <a href="{{route('users.index') }}" class="nav-link">Manage Users</a>
                                 </li>
+
+                                <li class="nav-item">
+                                    <a href="{{route('menu.index') }}" class="nav-link">Menu</a>
+                                </li>
                             @endif
         
 
@@ -113,6 +131,8 @@
         </main>
     </div>
 
+
+
     <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -121,10 +141,7 @@
     </script>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+  
  
     <script type="text/javascript">
         $(function() {
@@ -161,9 +178,32 @@
                   
                   replace(/'/g, "\\'");
            });
-        })();
+        });
 
+        // Select all button admin/menu
+        $('#select-all-categories').click(function(event) {   
+	    if(this.checked) {
+			$('#categories-list :checkbox').each(function() {
+			this.checked = true;                        
+			});
+            }else{
+                $('#categories-list :checkbox').each(function() {
+                this.checked = false;                        
+                });
+            }
+		});
+
+        $('#select-all-posts').click(function(event) {   
+		if(this.checked) {
+			$('#posts-list :checkbox').each(function() {
+				this.checked = true;                        
+			  });
+			}else{
+			  $('#posts-list :checkbox').each(function() {
+				this.checked = false;                        
+			  });
+			}
+		});   
     </script>    
-
 </body>
 </html>

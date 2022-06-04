@@ -51,6 +51,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Post');
     }
 
+    public function menus(){
+        return $this->hasMany('App\Models\Menu');
+    }
+
     public function roles(){
         return $this->belongsToMany('App\Models\Role');
     }
