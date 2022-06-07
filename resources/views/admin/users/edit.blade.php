@@ -10,23 +10,24 @@
 
             <form action="{{ route('users.update', ['user' => $model->id]) }}" method="post">
                 {{ method_field('PUT') }}
-                
+                {!! csrf_field() !!}
                 
                 @foreach($roles as $role)
                     <div class="checkbox">
                         <label>
                             <input 
                                 type="checkbox" 
-                                name="role[]" 
+                                name="roles[]" 
                                 value="{{ $role->id }}" 
+                                 
                                 {{ $model->hasRole($role->name)? 'checked': '' }} 
-                               
                             />
                             {{ $role->name }}
+
                         </label>
                     </div>
                 @endforeach
-                {!! csrf_field() !!}
+                
                 <div class="form-group">
                     <input type="submit" class="btn btn-default" value="submit" /> 
                 </div>

@@ -28,13 +28,20 @@
 </div>
 
 
-<div class="form-group date">
+<div class="form-group position-relative">
     <label for="published_at">Published Date/time</label>
 
 
-            <input type="text" class="form-control datepicker"  id="published_at"
-            name="published_at" value="{{ $model->published_at }}" />
-    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+    <input 
+        type="text" 
+        class="form-control datatimepicker-input"  
+        id="published_at"
+        name="published_at" 
+        data-target="#published_at"
+        data-toggle="datetimepicker"
+        value="{{ $model->published_at }}" 
+    />
+    
 </div>
 
 

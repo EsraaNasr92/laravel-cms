@@ -30,7 +30,7 @@
                     <tr>
                         <td> {{ $user -> name}}</td>
                         <td> {{ $user -> email}}</td>
-                        <td>{{ implode(', ', $user->roles()->get()->pluck('name')->toArray()) }}</td>
+                        <td>{{ implode(', ', $user->roles()->pluck('name')->toArray()) }}</td>
                         <td> 
                             <a href="{{ route('users.edit', ['user' => $user->id] ) }}">Edit</a> | 
                             Delete

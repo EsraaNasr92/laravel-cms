@@ -64,9 +64,10 @@ class UsersController extends Controller
             return redirect()->route('users.index');
         }
 
-        $user->roles()->sync($request->roles);
+        $user->roles()->syncWithoutDetaching($request->roles);
+        
         return redirect()->route('users.index')
-        ->with('status', '$user->name wan updated');
+        ->with('status', '$user->name was updated');
     }
 
     /**
