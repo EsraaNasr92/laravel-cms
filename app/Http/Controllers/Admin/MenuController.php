@@ -27,29 +27,6 @@ class MenuController extends Controller
      */
     public function index(Request $request)
     {
-        
-
-        /*$desiredMenu = '';
-        $menuitems = '';
-        if(isset($_GET['id']) && $_GET['id'] != 'new'){
-          $id = $_GET['id'];
-          $desiredMenu = menu::where('id',$id)->first();
-          if($desiredMenu->content != ''){
-            $menuitems = json_decode($desiredMenu->content);
-          }else{
-            $menuitems = MenuItem::where('menu_id',$desiredMenu->id)->get();                    
-          }
-        }else{
-          $desiredMenu = menu::orderby('id','DESC')->first();
-          if($desiredMenu){
-            if($desiredMenu->content != ''){
-              $menuitems = json_decode($desiredMenu->content);
-            }else{
-              $menuitems = MenuItem::where('menu_id',$desiredMenu->id)->get();                    
-            }
-          }    
-          
-        }*/
         $selectedMenu = '';
         $menuitems = '';
         if(isset($request->id)){
@@ -111,14 +88,6 @@ class MenuController extends Controller
     public function store(Request $request)
     {
 
-
-        /*Auth::user()->menus()->save(new Menu 
-            ($request->only(['title', 'location', 'content'])
-        ));
-
-        return redirect()->route('menu.index')
-        ->with('status', 'The menu has been created');*/
-
         $data = $request->all(); 
         if(menu::create($data)){ 
           $newdata = menu::orderby('id','DESC')->first();          
@@ -164,15 +133,9 @@ class MenuController extends Controller
         $data = $request->all(); 
         if($request->has('newContent')){
           $data['content'] = $request->newContent;
-        }
-        
+        }    
         $menu=Menu::findOrFail($request->menuid);    
         $menu->update($data);
-                
-        //$content = $request->data; 
-        //$newdata = [];  
-        //$newdata['location'] = $request->location;       
-        //$newdata['content'] = json_encode($content);
         return redirect()->back()
         ->with('status', 'Menu saved successfuly');
     }

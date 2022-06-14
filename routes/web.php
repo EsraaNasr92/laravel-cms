@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PagesController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,9 +14,7 @@ use App\Http\Controllers\Admin\PagesController;
 |
 */
 
-Route::get('/', function(){
-    return view('welcome');
-});
+Route::get('/','App\Http\Controllers\HomeController@index');
 
 Auth::routes();
 
@@ -54,8 +53,12 @@ Route::get('add-custom-link',[App\Http\Controllers\Admin\MenuController::class,'
 
 Route::get('save-menu',[App\Http\Controllers\Admin\MenuController::class,'save']);	
 Route::post('update-menuitem/{id}',[App\Http\Controllers\Admin\MenuController::class,'updateMenuItem']);		
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Route::get('delete-menuitem/{id}/{key}/{in?}',[App\Http\Controllers\Admin\MenuController::class,'deleteMenuItem']);
 Route::get('delete-menu/{id}',[App\Http\Controllers\Admin\MenuController::class,'destroy']);
+
+
+
+Route::get('/blog', [App\Http\Controllers\BlogPostController::class, 'index'])->name('blog');
+Route::get('/blog/{slug}', [App\Http\Controllers\BlogPostController::class, 'view'])->name('blog.view');
+
+

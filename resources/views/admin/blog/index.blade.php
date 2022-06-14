@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-   <a class="btn btn-primary" href="{{ route('blog.create') }}" >Create new page</a>
+   <a class="btn btn-primary" href="{{ route('blog.create') }}" >Create new post</a>
 
     <div class="row justify-content-center">
         <div class="col-md-8">
