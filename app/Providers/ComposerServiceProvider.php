@@ -24,17 +24,20 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer('home.*', function($view){
-            //$view->with('menuitems', \App\Models\MenuItem::where('menu_id', '=', '1')->get());
-            $menuArray = $view->with('menuitems', \App\Models\Menu::get('content')->toArray());
+        /*View::composer('home.*', function($view){
+            $view->with('menuitems', \App\Models\Menu::get());
             //dd($menuArray);
             
-        });
+        });*/
 
         View::composer('blog.*', function($view){
             $view->with('pages', \App\Models\Page::get());
             
         });
+
+        
+
+          
 
     }
 }

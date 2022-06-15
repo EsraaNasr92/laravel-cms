@@ -2,6 +2,6 @@
 
 @section('content')
 <div class="container">
-    {{$page->content}}
+    {!! $page->content !!}
 </div>
 @endsection
