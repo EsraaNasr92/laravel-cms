@@ -50,12 +50,37 @@ class Postcontroller extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreBlogRequest $request)
-    {
-        Auth::user()->posts()->save(new Post 
-        ($request->only(['title', 'slug', 'excerpt', 'body', 'published_at'])
+    {           
+        /* How to add post image
+        $post = new Post;
+        $post->title = $request->title;
+        $post->slug = $request->slug;
+        $post->body = $request->body;
+        $post->excerpt = $request->excerpt;
+        $post->published_at = $request->published_at;
+        $post->user_id = Auth::user()->id;
+        
+        $path = $request->file('image');
+        $image = $path->getClientOriginalName();
+        $path->move(public_path('uploads'), $image);
+
+        $post->image = $image;
+        $post->save();*/
+
+       
+        $post = Auth::user()->posts()->save(new Post  
+        ($request->only(['title', 'slug', 'excerpt', 'body' ,'published_at'])
         ));
 
-        return redirect()->route('blog.index')
+        $path = $request->file('image');
+        $image = $path->getClientOriginalName();
+        $path->move(public_path('uploads'), $image);
+
+        $post->image = $image;   
+
+        $post->save();
+
+        return redirect()->route('blog.index')     
         ->with('status', 'The post has been created');
     }
 

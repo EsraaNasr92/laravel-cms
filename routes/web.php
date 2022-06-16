@@ -61,3 +61,8 @@ Route::get('/blog', [App\Http\Controllers\BlogPostController::class, 'index'])->
 Route::get('/blog/{slug}', [App\Http\Controllers\BlogPostController::class, 'view'])->name('blog.view');
 
 
+
+
+Route::get('/artisan-link', function () {
+    Artisan::call('storage:link');
+});

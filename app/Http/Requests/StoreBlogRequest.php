@@ -28,6 +28,7 @@ class StoreBlogRequest extends FormRequest
             'slug' => 'required',
             'published_at' => 'nullable',
             'excerpt' => 'required',
+            'image' => 'required|image|mimes:jpg,png,jpeg|max:3048',
             'body' => 'required'
         ];
     }

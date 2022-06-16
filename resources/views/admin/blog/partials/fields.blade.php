@@ -44,6 +44,12 @@
     
 </div>
 
+<div class="form-group">
+    <label for="image">Image</label>
+    <input type="file" placeholder="Image" name="image" id="image">
+    <img style="visibility:hidden"  id="prview" src=""  width=100 height=100 />
+    
+</div>
 
 <div class="form-group">
     <label for="content">Body</label>
