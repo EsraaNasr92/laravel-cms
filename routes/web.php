@@ -64,6 +64,8 @@ Route::get('/blog', [App\Http\Controllers\BlogPostController::class, 'index'])->
 Route::get('/blog/{slug}', [App\Http\Controllers\BlogPostController::class, 'view'])->name('blog.view');
 
 
+Route::get('/partner', [App\Http\Controllers\PartnerController::class, 'index'])->name('partner');
+Route::get('/partner/{slug}', [App\Http\Controllers\PartnerController::class, 'view'])->name('partner.view');
 
 
 Route::get('/artisan-link', function () {
