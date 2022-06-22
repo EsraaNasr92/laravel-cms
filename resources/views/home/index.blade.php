@@ -3,7 +3,18 @@
 @section('title') {{ 'home' }} @endsection
 
 @section('content')
-<div class="container">
+<div class="banner" style="background-image: url('{{ asset('/uploads/' . $banner->image) }}')">
+        <div class="banner-content">
+            <h2>{{$banner->title}}</h2>
+            <h4>{{$banner->subtitle}}</h4>
+            <a href="{{ $banner -> btn_url}}" class="btn btn-primary" target="_blank">{{ $banner->btn_title }}</a>
+         <!-- <img src="{{ asset('/uploads/' . $banner->image) }}"  class="img-fluid" alt="">  -->
+        </div>    
+    </div>
+    
+<div class="container">         
+
+
    <h3>This is post section</h3> 
 
     @foreach($posts as $post)

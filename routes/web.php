@@ -26,6 +26,9 @@ Route::resource('/admin/pages', 'App\Http\Controllers\Admin\PagesController', ['
     'show'
 ]]);
 
+Route::resource('/admin/banner', 'App\Http\Controllers\Admin\BannerController', ['except' => [
+    'show'
+]]);
 
 Route::resource('/admin/blog', 'App\Http\Controllers\Admin\Postcontroller', ['except' => [
     'show'
