@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 use App\Http\Requests\StoreBlogRequest;
 use App\Http\Requests\UpdateBlogRequest;
@@ -49,7 +50,7 @@ class Postcontroller extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreBlogRequest $request)
+    public function store(Request $request)
     {           
         /* How to add post image
         $post = new Post;
@@ -73,26 +74,22 @@ class Postcontroller extends Controller
         ));
 
         $path = $request->file('image');
-        $image = $path->getClientOriginalName();
-        $path->move(public_path('uploads'), $image);
 
-        $post->image = $image;   
+        if($path != null){
+            $image = $path->getClientOriginalName();
+            $path->move(public_path('uploads/posts'), $image);
+    
+            $post->image = $image;   
+    
+            $post->save();
+    
+            return redirect()->route('blog.index')     
+            ->with('status', 'The post has been created');
+        }else{
+            return redirect()->route('blog.index')     
+            ->with('status', 'The post has been created');
+        }
 
-        $post->save();
-
-        return redirect()->route('blog.index')     
-        ->with('status', 'The post has been created');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Post $post)
-    {
-        //
     }
 
     /**
@@ -118,14 +115,29 @@ class Postcontroller extends Controller
         if(auth::user()->cannot('update', $blog)){
             return redirect()->route('blog.index')
             ->with('status', 'you do not have permission to edit that post.');       
-         }
+        }
+
+        $blog->fill($request->only(['title', 'slug', 'published_at', 'excerpt', 'body']));
+
+        if ($request->hasFile('image'))
+        {
+            $path = 'uploads/posts/'.$blog->image;
+            if (File::exists($path))
+            {
+                File::delete($path);
+            }
+    
+            $path = $request->file('image');
+            $image = $path->getClientOriginalName();
+            $path->move(public_path('uploads/posts'), $image);
+            $blog->image = $image;  
+            $blog->save();
+        }
+
+        return redirect()->route('blog.index')
+         ->with('status', 'The post was updated.');
 
 
-         $blog->fill($request->only(['title', 'slug',
-         'published_at', 'excerpt', 'body']))->save();
-
-         return redirect()->route('blog.index')
-         ->with('status', 'The post was updated.');   
     }
 
     /**

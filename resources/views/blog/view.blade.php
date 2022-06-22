@@ -1,5 +1,7 @@
 @extends('layouts.frontend')
 
+@section('title') {{$post->title}} @endsection
+
 @section('content')
 <div class="container">
         <article>
@@ -9,9 +11,12 @@
             <p>published by: {{$post->user->name}} on {{$post->published_at}}</p>
             <p>{!! $post->body !!}</p>
             
-           
-
-            <img height="100" width=100 src="{{ asset('uploads/' . $post->image) }}">
+           @if($post->image != null)
+            <img height="100" width=100 src="{{ asset('uploads/posts/' . $post->image) }}">
+           @else
+            <img height="100" width=100 src="{{ asset('uploads/post_placeholder.jpeg') }}">
+            @endif
+            
         </article>
 </div>
 @endsection

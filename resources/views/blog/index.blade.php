@@ -1,5 +1,7 @@
 @extends('layouts.frontend')
 
+@section('title') {{ 'blog' }} @endsection
+
 @section('content')
 <div class="container">
     @foreach($posts as $post)

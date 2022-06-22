@@ -32,6 +32,9 @@ Route::resource('/admin/blog', 'App\Http\Controllers\Admin\Postcontroller', ['ex
 ]]);
 
 
+Route::resource('/admin/partners', 'App\Http\Controllers\Admin\PartnersController', ['except' => [
+    'show'
+]]);
 
 Route::resource('/admin/users', 'App\Http\Controllers\Admin\UsersController', ['except' => [
     'show', 'create', 'store'
@@ -66,3 +69,6 @@ Route::get('/blog/{slug}', [App\Http\Controllers\BlogPostController::class, 'vie
 Route::get('/artisan-link', function () {
     Artisan::call('storage:link');
 });
+
+
+

@@ -51,6 +51,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Post');
     }
 
+    public function partners(){
+        return $this->hasMany('App\Models\Partners');
+    }
+
     public function menus(){
         return $this->hasMany('App\Models\Menu');
     }

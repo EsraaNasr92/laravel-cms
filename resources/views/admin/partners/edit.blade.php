@@ -6,12 +6,12 @@
     <div class="row justify-content-center">
        
         <div class="col-md-8">
-            <h1>Edit post</h1>
+            <h1>Edit partners</h1>
 
-            <form action="{{ route('blog.update', ['blog' => $model->id]) }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('partners.update', ['partner' => $model->id]) }}" method="post" enctype="multipart/form-data">
                 {{ method_field('PUT') }}
 
-                @include('admin.blog.partials.fields')
+                @include('admin.partners.partials.fields')
             </form>
         </div>
     </div>
@@ -20,5 +20,5 @@
 
 
 @section('scripts')
-    @include('admin.blog.partials.scripts')
+    @include('admin.partners.partials.scripts')
 @endsection

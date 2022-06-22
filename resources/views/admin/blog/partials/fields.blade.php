@@ -47,7 +47,15 @@
 <div class="form-group">
     <label for="image">Image</label>
     <input type="file" placeholder="Image" name="image" id="image">
-    <img style="visibility:hidden"  id="prview" src=""  width=100 height=100 />
+    
+
+    @if($model->image != null)
+        <img height="100" width=100 src="{{ asset('uploads/posts/' . $model->image) }}">
+    @else
+        <img style="visibility:hidden"  id="prview" src=" {{ asset('uploads/posts/' . $model->image) }} "  width=100 height=100 />     
+    @endif
+
+    
     
 </div>
 
