@@ -13,8 +13,6 @@
     </div>
     
 <div class="container">         
-
-
    <h3>This is post section</h3> 
 
     @foreach($posts as $post)
@@ -31,7 +29,7 @@
 
         @endforeach
 
-    <h3>This is post partner</h3>
+    <h3>This is partner section</h3>
 
     @foreach($partner as $partner)
 
@@ -46,5 +44,27 @@
         </article>
 
         @endforeach
+
+    <h3>This is services section</h3>
+
+    @foreach($service as $service)
+
+    <article>
+        <h2>
+            <a href="{{ route('services.view' , ['slug' => $service->slug])}}">{{$service->title}}</a>
+        </h2>
+
+        @if($service->image != null)
+            <img height="100" width=100 src="{{ asset('uploads/services/' . $service->image) }}">
+        @else
+            <img height="100" width=100 src="{{ asset('uploads/post_placeholder.jpeg') }}">
+        @endif
+
+        <p>{{$service->content}}</p>
+
+
+    </article>
+
+    @endforeach
 </div>
 @endsection

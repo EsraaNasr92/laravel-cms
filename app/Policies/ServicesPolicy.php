@@ -2,13 +2,14 @@
 
 namespace App\Policies;
 
-use App\Models\Page;
+use App\Models\Services;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class PagePolicy
+class ServicesPolicy
 {
     use HandlesAuthorization;
+
 
     public function before($user, $ability){
         if($user->isAdminOrEditor()){
@@ -20,10 +21,10 @@ class PagePolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Page  $page
+     * @param  \App\Models\Services  $services
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Page $page)
+    public function update(User $user, Services $services)
     {
         return $user->id == $page->user_id;
     }
@@ -32,10 +33,10 @@ class PagePolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Page  $page
+     * @param  \App\Models\Services  $services
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Page $page)
+    public function delete(User $user, Services $services)
     {
         return $user->id == $page->user_id;
     }
