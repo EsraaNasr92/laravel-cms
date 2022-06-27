@@ -9,6 +9,7 @@
                 <a href="{{ route('blog.view' , ['slug' => $post->slug]) }}">{{$post->title}}</a>
             </h2>
             <p>published by: {{$post->user->name}} on {{$post->published_at}}</p>
+            <p class="text-muted">{{ $post->category ? $post->category->name : 'Uncategorized' }}</p>
             <p>{!! $post->body !!}</p>
             
            @if($post->image != null)

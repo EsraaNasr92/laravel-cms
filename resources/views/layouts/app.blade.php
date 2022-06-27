@@ -115,6 +115,9 @@
                                     <a class="dropdown-item" href="{{ route('blog.create') }}">
                                         Create new post
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('category.index') }}">
+                                        Categories list
+                                    </a>
                                 </div>
                             </li>
 

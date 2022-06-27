@@ -17,7 +17,7 @@
                     <thead>
                         <tr>
                             <th>Title</th>
-                            
+                            <th>Category</th>
                             <th>Slug</th>
                             <th>Published</th>
                             <th>Options</th>
@@ -27,7 +27,7 @@
                     @foreach($model as $post)
                     <tr>
                         <td> {{ $post -> title}}</td>
-                       
+                        <td><p class="text-muted">{{ $post->category ? $post->category->name : 'Uncategorized' }}</p></td>
                         <td> {{ $post -> slug}}</td>
                         <td> {{ $post -> published_at }}</td>
                         <td> 

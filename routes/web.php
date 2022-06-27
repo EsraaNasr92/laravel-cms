@@ -43,6 +43,9 @@ Route::resource('/admin/services', 'App\Http\Controllers\Admin\ServicesControlle
     'show'
 ]]);
 
+Route::resource('/admin/category', 'App\Http\Controllers\Admin\CategoryController', ['except' => [
+    'show'
+]]);
 
 Route::resource('/admin/users', 'App\Http\Controllers\Admin\UsersController', ['except' => [
     'show', 'create', 'store'
@@ -50,17 +53,11 @@ Route::resource('/admin/users', 'App\Http\Controllers\Admin\UsersController', ['
 
 
 Route::resource('/admin/menu', 'App\Http\Controllers\Admin\MenuController');
-
 Route::get('manage-menus/{id?}',[App\Http\Controllers\Admin\MenuController::class,'index']);
-
 Route::post('create-menu',[App\Http\Controllers\Admin\MenuController::class,'store']);
-
-Route::get('add-categories-to-menu',[App\Http\Controllers\Admin\MenuController::class,'addCategory']);
-	
+Route::get('add-categories-to-menu',[App\Http\Controllers\Admin\MenuController::class,'addCategory']);	
 Route::get('add-post-to-menu',[App\Http\Controllers\Admin\MenuController::class,'addPostToMenu']);
-
 Route::get('add-custom-link',[App\Http\Controllers\Admin\MenuController::class,'addCustomLink']);
-
 Route::get('save-menu',[App\Http\Controllers\Admin\MenuController::class,'save']);	
 Route::post('update-menuitem/{id}',[App\Http\Controllers\Admin\MenuController::class,'updateMenuItem']);		
 Route::get('delete-menuitem/{id}/{key}/{in?}',[App\Http\Controllers\Admin\MenuController::class,'deleteMenuItem']);

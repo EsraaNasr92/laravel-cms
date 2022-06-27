@@ -11,6 +11,8 @@ use App\Http\Requests\StoreBlogRequest;
 use App\Http\Requests\UpdateBlogRequest;
 use Auth;
 
+use App\Models\Category;
+
 class Postcontroller extends Controller
 {
 
@@ -41,7 +43,8 @@ class Postcontroller extends Controller
      */
     public function create()
     {
-        return view('admin.blog.create')->with(['model' => new Post()]);
+        $categories = Category::with('children')->whereNull('parent_id')->get();
+        return view('admin.blog.create')->with(['model' => new Post()])->withCategories($categories);
     }
 
     /**
@@ -70,7 +73,7 @@ class Postcontroller extends Controller
 
        
         $post = Auth::user()->posts()->save(new Post  
-        ($request->only(['title', 'slug', 'excerpt', 'body' ,'published_at'])
+        ($request->only(['title', 'slug', 'excerpt', 'body' ,'published_at', 'category_id'])
         ));
 
         $path = $request->file('image');
@@ -100,7 +103,8 @@ class Postcontroller extends Controller
      */
     public function edit(Post $blog)
     {
-        return view('admin.blog.edit')->with('model', $blog);
+        $categories = Category::with('children')->whereNull('parent_id')->get();
+        return view('admin.blog.edit')->with('model', $blog)->withCategories($categories);
     }
 
     /**
@@ -117,7 +121,7 @@ class Postcontroller extends Controller
             ->with('status', 'you do not have permission to edit that post.');       
         }
 
-        $blog->fill($request->only(['title', 'slug', 'published_at', 'excerpt', 'body']));
+        $blog->fill($request->only(['title', 'slug', 'published_at', 'excerpt', 'body', 'category_id']));
 
         if ($request->hasFile('image'))
         {
@@ -131,8 +135,10 @@ class Postcontroller extends Controller
             $image = $path->getClientOriginalName();
             $path->move(public_path('uploads/posts'), $image);
             $blog->image = $image;  
-            $blog->save();
+            
         }
+
+        $blog->save();
 
         return redirect()->route('blog.index')
          ->with('status', 'The post was updated.');
