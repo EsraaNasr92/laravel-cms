@@ -55,6 +55,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Post');
     }
 
+    public function portfolios(){
+        return $this->hasMany('App\Models\Portfolio');
+    }
+
     public function partners(){
         return $this->hasMany('App\Models\Partners');
     }

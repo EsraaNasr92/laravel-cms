@@ -6,17 +6,16 @@
     <div class="row justify-content-center">
        
         <div class="col-md-8">
-            <h1>Create new post</h1>
+            <h1>Create new project</h1>
 
-            <form action="{{ route('blog.store') }}" method="post" enctype="multipart/form-data">
-                @include('admin.blog.partials.fields')
+            <form action="{{ route('portfolio.store') }}" method="post" enctype="multipart/form-data">
+                @include('admin.portfolio.partials.fields')
             </form>
         </div>
     </div>
 </div>
 @endsection
 
-
 @section('scripts')
-    @include('admin.blog.partials.scripts')
+    @include('admin.portfolio.partials.scripts')
 @endsection

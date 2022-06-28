@@ -47,6 +47,11 @@ Route::resource('/admin/category', 'App\Http\Controllers\Admin\CategoryControlle
     'show'
 ]]);
 
+Route::resource('/admin/portfolio', 'App\Http\Controllers\Admin\PortfolioController', ['except' => [
+    'show'
+]]);
+
+
 Route::resource('/admin/users', 'App\Http\Controllers\Admin\UsersController', ['except' => [
     'show', 'create', 'store'
 ]]);
@@ -74,6 +79,9 @@ Route::get('/partner/{slug}', [App\Http\Controllers\PartnerController::class, 'v
 
 Route::get('/services', [App\Http\Controllers\ServicesController::class, 'index'])->name('services');
 Route::get('/services/{slug}', [App\Http\Controllers\ServicesController::class, 'view'])->name('services.view');
+
+Route::get('/portfolio', [App\Http\Controllers\PortfolioController::class, 'index'])->name('portfolio');
+Route::get('/portfolio/{slug}', [App\Http\Controllers\PortfolioController::class, 'view'])->name('portfolio.view');
 
 Route::get('/artisan-link', function () {
     Artisan::call('storage:link');

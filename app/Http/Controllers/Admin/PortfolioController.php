@@ -3,19 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Portfolio;
 
-use App\Models\Partners;
+
 use Illuminate\Http\Request;
+use App\Http\Requests\StorePortfolioRequest;
+use App\Http\Requests\UpdatePortfolioRequest;
 
 use Auth;
-use App\Http\Requests\StorePartnersRequest;
-use App\Http\Requests\UpdatePartnersRequest;
-
 use Illuminate\Support\Facades\File;
 
-class PartnersController extends Controller
+class PortfolioController extends Controller
 {
-    
     /**
      * Display a listing of the resource.
      *
@@ -29,13 +28,12 @@ class PartnersController extends Controller
     public function index()
     {
         if(Auth::user()->isAdminOrEditor()){
-            $partners = Partners::paginate(5);
+            $portfolio = Portfolio::paginate(5);
         }else{
-            $partners = Auth::user()->paginate(5);
+            $portfolio = Auth::user()->paginate(5);
         }
         
-        return view('admin.partners.index', ['model' => $partners]);
-
+        return view('admin.portfolio.index', ['model' => $portfolio]);
     }
 
     /**
@@ -45,7 +43,8 @@ class PartnersController extends Controller
      */
     public function create()
     {
-        return view('admin.partners.create')->with('model' , new Partners());
+       
+        return view('admin.portfolio.create')->with('model' , new Portfolio());
     }
 
     /**
@@ -54,55 +53,53 @@ class PartnersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePartnersRequest $request)
+    public function store(StorePortfolioRequest $request)
     {
-        $partners = Auth::user()->partners()->save(new Partners  
+        $portfolios = Auth::user()->portfolios()->save(new Portfolio  
         ($request->only(['title', 'slug', 'content', 'image'])
         ));
 
         $path = $request->file('image');
         $image = $path->getClientOriginalName();
-        $path->move(public_path('uploads/partners'), $image);
-        $partners->image = $image;   
-        $partners->save();
+        $path->move(public_path('uploads/portfolio'), $image);
+        $portfolios->image = $image;   
+        $portfolios->save();
 
-        return redirect()->route('partners.index')     
+        return redirect()->route('portfolio.index')     
         ->with('status', 'The partner has been created');
     }
-
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Partners  $partners
+     * @param  \App\Models\Portfolio  $portfolio
      * @return \Illuminate\Http\Response
      */
-    public function edit(Partners $partner)
+    public function edit(Portfolio $portfolio)
     {
-
-        return view('admin.partners.edit')->with('model', $partner);
+        return view('admin.portfolio.edit')->with('model', $portfolio);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Partners  $partners
+     * @param  \App\Models\Portfolio  $portfolio
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePartnersRequest $request, Partners $partner)
+    public function update(UpdatePortfolioRequest $request, Portfolio $portfolio)
     {
-        if(Auth::user()->cannot('update', $partner)){
-            return redirect()->route('partners.index')
+        if(Auth::user()->cannot('update', $portfolio)){
+            return redirect()->route('portfolio.index')
             ->with('status', 'you do not have permission to edit that partner.');       
          }
 
 
-        $partner->fill($request->only(['title', 'slug',
+        $portfolio->fill($request->only(['title', 'slug',
          'content']))->save();
 
          if ($request->hasFile('image'))
          {
-             $path = 'uploads/partners/'.$partner->image;
+             $path = 'uploads/portfolio/'.$portfolio->image;
              if (File::exists($path))
              {
                  File::delete($path);
@@ -110,32 +107,32 @@ class PartnersController extends Controller
      
              $path = $request->file('image');
              $image = $path->getClientOriginalName();
-             $path->move(public_path('uploads/partners'), $image);
-             $partner->image = $image;            
+             $path->move(public_path('uploads/portfolio'), $image);
+             $portfolio->image = $image;            
          }
 
-         $partner->save();
+         $portfolio->save();
          
-         return redirect()->route('partners.index')
-         ->with('status', 'The partner was updated.');
+         return redirect()->route('portfolio.index')
+         ->with('status', 'The project was updated.');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Partners  $partners
+     * @param  \App\Models\Portfolio  $portfolio
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Partners $partner)
+    public function destroy(Portfolio $portfolio)
     {
-        if(Auth::user()->cannot('delete', $partner)){
-            return redirect()->route('partners.index')
+        if(Auth::user()->cannot('delete', $portfolio)){
+            return redirect()->route('portfolio.index')
             ->with('status', 'you do not have permission to delete that post.');       
          }
 
-         $partner->delete();
+         $portfolio->delete();
 
-         return redirect()->route('partners.index')
-         ->with('status', 'The partner was deleted.'); 
+         return redirect()->route('portfolio.index')
+         ->with('status', 'The project was deleted.'); 
     }
 }
