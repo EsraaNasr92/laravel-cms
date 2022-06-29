@@ -5,8 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-//This module for post categories
-class Category extends Model
+class Categoryp extends Model
 {
     use HasFactory;
 
@@ -15,12 +14,14 @@ class Category extends Model
         'name'
     ];
 
-    public function children(){
-        return $this->hasMany('App\Models\Category', 'parent_id');
+
+    public function children()
+    {
+      return $this->hasMany('App\Models\Categoryp', 'parent_id');
     }
 
-    public function posts()
+    public function portfolios()
     {
-        return $this->hasMany('App\Models\Post');
+        return $this->hasMany('App\Models\Portfolio');
     }
 }

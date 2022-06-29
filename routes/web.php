@@ -51,6 +51,9 @@ Route::resource('/admin/portfolio', 'App\Http\Controllers\Admin\PortfolioControl
     'show'
 ]]);
 
+Route::resource('/admin/pcategory', 'App\Http\Controllers\Admin\PortfolioCategoryController', ['except' => [
+    'show'
+]]);
 
 Route::resource('/admin/users', 'App\Http\Controllers\Admin\UsersController', ['except' => [
     'show', 'create', 'store'

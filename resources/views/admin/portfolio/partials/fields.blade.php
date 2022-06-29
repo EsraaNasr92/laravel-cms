@@ -30,6 +30,21 @@
 </div>
 
 
+<div class="form-group">
+    <label for="categoryp_id">Category</label>
+    <select class="form-control" name="categoryp_id" required>
+        <option value="">Select a Category</option>
+
+        @foreach ($categories as $category)
+            <option value="{{ $category->id }}" {{ $category->id === old('categoryp_id') ? 'selected' : '' }}>{{ $category->name }}</option>
+            @if ($category->children)
+                @foreach ($category->children as $child)
+                    <option value="{{ $child->id }}" {{ $child->id === old('categoryp_id') ? 'selected' : '' }}>&nbsp;&nbsp;{{ $child->name }}</option>
+                @endforeach
+            @endif
+        @endforeach
+    </select>
+</div>
 
 <div class="form-group">
     <label for="image">Image</label>

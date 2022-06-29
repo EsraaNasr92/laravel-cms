@@ -8,7 +8,7 @@
             <h2>
                 <a href="{{ route('portfolio.view' , ['slug' => $portfolio->slug]) }}">{{$portfolio->title}}</a>
             </h2>
-            
+            <p class="text-muted">{{ $portfolio->categoryp ? $portfolio->categoryp->name : 'Uncategorized' }}</p>
             <p>{!! $portfolio->content !!}</p>
             
            @if($portfolio->image != null)

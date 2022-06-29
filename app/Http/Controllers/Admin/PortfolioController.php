@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Portfolio;
-
+use App\Models\Categoryp;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePortfolioRequest;
@@ -43,8 +43,8 @@ class PortfolioController extends Controller
      */
     public function create()
     {
-       
-        return view('admin.portfolio.create')->with('model' , new Portfolio());
+        $categories = Categoryp::with('children')->whereNull('parent_id')->get();
+        return view('admin.portfolio.create')->with('model' , new Portfolio())->withCategories($categories);
     }
 
     /**
@@ -56,7 +56,7 @@ class PortfolioController extends Controller
     public function store(StorePortfolioRequest $request)
     {
         $portfolios = Auth::user()->portfolios()->save(new Portfolio  
-        ($request->only(['title', 'slug', 'content', 'image'])
+        ($request->only(['title', 'slug', 'content', 'image', 'categoryp_id'])
         ));
 
         $path = $request->file('image');
@@ -76,7 +76,8 @@ class PortfolioController extends Controller
      */
     public function edit(Portfolio $portfolio)
     {
-        return view('admin.portfolio.edit')->with('model', $portfolio);
+        $categories = Categoryp::with('children')->whereNull('parent_id')->get();
+        return view('admin.portfolio.edit')->with('model', $portfolio)->withCategories($categories);
     }
 
     /**
@@ -95,7 +96,7 @@ class PortfolioController extends Controller
 
 
         $portfolio->fill($request->only(['title', 'slug',
-         'content']))->save();
+         'content', 'categoryp_id']))->save();
 
          if ($request->hasFile('image'))
          {

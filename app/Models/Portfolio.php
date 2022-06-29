@@ -14,6 +14,7 @@ class Portfolio extends Model
         'slug',
         'content',
         'image',
+        'categoryp_id'
         
     ];
 
@@ -21,7 +22,7 @@ class Portfolio extends Model
         return $this->belongsTo('App\Models\User');
     }
     
-    public function category() {
-        return $this->belongsTo('App\Models\Portfoliocategory');
+    public function categoryp() {
+        return $this->belongsTo('App\Models\Categoryp');
     }
 }

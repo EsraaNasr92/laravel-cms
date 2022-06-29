@@ -19,6 +19,7 @@
                             <th>Title</th>
                             <th>slug</th>
                             <th>content</th>
+                            <th>Category</th>
                             <th>Options</th>
                         </tr>
                     </thead>
@@ -28,6 +29,7 @@
                         <td> {{ $portfolio -> title}}</td>
                         <td> {{ $portfolio -> slug}}</td>
                         <td> {{ $portfolio -> content}}</td>
+                        <td><td><p class="text-muted">{{ $portfolio->categoryp ? $portfolio->categoryp->name : 'Uncategorized' }}</p></td></td>
                         <td> 
                             <a href="{{ route('portfolio.edit', ['portfolio' => $portfolio->id] ) }}">Edit</a> | 
                             <form action="{{ route('portfolio.destroy',$portfolio->id) }}" method="POST" >
