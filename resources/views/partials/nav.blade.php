@@ -3,7 +3,7 @@
   @if(!empty($topNavItems))
 	@foreach($topNavItems as $nav)
 	  @if(!empty($nav->children[0]))
-		<li class="nav-item"><a class="nav-link" href="#" class="dropdown" data-toggle="dropdown">@if($nav->name == NULL) {{$nav->title}} @else {{$nav->name}} @endif <i class="caret"></i>
+		<li class="nav-item"><a class="nav-link" href="#" class="dropdown" data-toggle="dropdown">@if($nav->name == NULL) {{$nav->title}} @else {{$nav->name}} @endif <i class="fa-solid fa-caret-down"></i>
 		  <ul class="dropdown-menu">
 			@foreach($nav->children[0] as $childNav)
 			  @if($childNav->type == 'custom')

@@ -133,6 +133,9 @@
                                     <a class="dropdown-item" href="{{ route('portfolio.create') }}">
                                         Create new project
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('pcategory.index') }}">
+                                        Categories list
+                                    </a>
                                 </div>
                             </li>
 

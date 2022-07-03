@@ -227,7 +227,7 @@
 
                           <div class="form-group menulocation">
                               <label><b>Menu Location</b></label>
-                              <p><label><input type="radio" name="location" value="1" @if($selectedMenu->location == 1) checked @endif> Header</label></p>
+                              <p><label><input type="radio" name="location" value="header" @if($selectedMenu->location == 'header') checked @endif> Header</label></p>
                               <p><label><input type="radio" name="location" value="2" @if($selectedMenu->location == 2) checked @endif> Main Navigation</label></p>
                           </div>
                           <div class="form-group">
@@ -359,32 +359,21 @@ var group = $("#menuitems").sortable({
 });
 
 
+
 $('#saveMenu').click(function(){
   var menuid = <?=$selectedMenu->id?>;
   var location = $('input[name="location"]:checked').val();
   var newContent = $("#serialize_output").text();
-  if(newContent.length > 0){
-    var data = JSON.parse($("#serialize_output").text());	
-    $.ajax({
-        type:"get",
-        data: {menuid:menuid,newContent:newContent,location:location},
-        url: "{{url('save-menu')}}",				
-        success:function(){
-         location.reload();
-        }
-      })	
-  } else{
-    $.ajax({
-        type:"get",
-        data: {menuid:menuid,location:location},
-        url: "{{url('save-menu')}}",				
-        success:function(){
-         location.reload();
-        }
-      })	
-  }
+  var data = JSON.parse($("#serialize_output").text());	
+  $.ajax({
+    type:"get",
+	data: {menuid:menuid,data:data,location:location},
+	url: "{{url('save-menu')}}",				
+	success:function(res){
+	  window.location.reload();
+	}
+  })	
 })
-
 </script>
 @endif
 

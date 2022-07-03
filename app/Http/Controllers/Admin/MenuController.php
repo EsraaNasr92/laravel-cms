@@ -70,16 +70,6 @@ class MenuController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -95,30 +85,8 @@ class MenuController extends Controller
             return redirect("manage-menus?id=$newdata->id")
             ->with('status', 'The menu has been created');
         }else{
-          return redirect()->back()->with('error','Failed to save menu !');
+          return redirect()->back()->with('status','Failed to save menu !');
         }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Menu  $menu
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Menu $menu)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Menu  $menu
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Menu $menu)
-    {
-        //
     }
 
     /**
@@ -130,12 +98,21 @@ class MenuController extends Controller
      */
     public function save(Request $request)
     {
-        $data = $request->all(); 
+        /*$data = $request->all(); 
         if($request->has('newContent')){
           $data['content'] = $request->newContent;
         }    
         $menu=Menu::findOrFail($request->menuid);    
-        $menu->update($data);
+        $menu->update($data);*/
+
+
+        $newContent = $request->all(); 
+        $menu=Menu::findOrFail($request->menuid);            
+        $content = $request->data; 
+        $newContent = [];  
+        $newContent['location'] = $request->location;       
+        $newContent['content'] = json_encode($content);
+        $menu->update($newContent); 
         return redirect()->back()
         ->with('status', 'Menu saved successfuly');
     }
