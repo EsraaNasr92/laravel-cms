@@ -51,9 +51,16 @@ class PagesController extends Controller
      */
     public function store(WorkWithPage $request)
     {
-        Auth::user()->pages()->save(new Page 
+        /*Auth::user()->pages()->save(new Page 
             ($request->only(['title', 'slug', 'content'])
-        ));
+        ));*/
+        
+        $page = new Page();
+        $page->title  = $request->title;
+        $page->content  = $request->content;
+        $page->slug = \Str::slug($request->title);
+        $page->user_id = Auth::user()->id;
+        $page->save();
 
         return redirect()->route('pages.index')
         ->with('status', 'The page has been created');

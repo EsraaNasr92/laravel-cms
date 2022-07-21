@@ -55,7 +55,7 @@ class BannerController extends Controller
         $banner->save();
 
         return redirect()->route('banner.index')     
-        ->with('status', 'The partner has been created');
+        ->with('status', 'The banner has been created');
     }
 
     /**
@@ -97,7 +97,7 @@ class BannerController extends Controller
         }
 
         return redirect()->route('banner.index')
-        ->with('status', 'The partner was updated.');
+        ->with('status', 'The banner was updated.');
     }
 
     /**

@@ -10,24 +10,25 @@
 </div>
 @endif
 
-<div class="form-group">
-    <label for="title">Title</label>
-    <input type="text" class="form-control" id="title"
-            name="title" value="{{ $model->title }}" />
-</div>
 
-<div class="form-group">
-    <label for="slug">Url</label>
-    <input type="text" class="form-control" id="slug"
-            name="slug" value="{{ $model->slug }}" /> 
-</div>
+    <div class="form-group">
+        <input type="text" class="intro-x form-control py-3 px-4 blockl mt-4" id="title"
+                name="title" value="{{ $model->title }}" placeholder="Page title"/>
+    </div>
 
-<div class="form-group">
-    <label for="content">Content</label>
-    <!--<textarea class="form-control" id="content" name="content">{{ $model->content }}</textarea>-->
-    <textarea class="ckeditor form-control" name="content" id="content" >{{ $model->content }}</textarea>
-</div>
+    <div class="form-group">
+        <input type="text" class="intro-x form-control py-3 px-4 blockl mt-4" id="slug"
+                name="slug" value="{{ $model->slug }}" placeholder="Page slug will generate automatic"/> 
+    </div>
 
-<div class="form-group">
-    <input type="submit" class="btn btn-default" value="submit" /> 
-</div>
+    <div class="form-group mt-5">
+        <textarea class="ckeditor intro-x form-control py-3 px-4 blockl mt-5" name="content" id="content" >{{ $model->content }}</textarea>
+    </div>
+
+    <div class="form-group mt-5">
+        <input type="submit" class="btn py-3 btn-primary w-full md:w-52" value="Submit" /> 
+        <a 
+        class="btn py-3 border-slate-300 dark:border-darkmode-400 text-slate-500 w-full md:w-52" 
+        href="{{route ('pages.index')}}"> Cancel </a>
+    </div>
+

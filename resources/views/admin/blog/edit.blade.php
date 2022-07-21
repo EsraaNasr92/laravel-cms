@@ -6,8 +6,7 @@
     <div class="row justify-content-center">
        
         <div class="col-md-8">
-            <h1>Edit post</h1>
-
+        <h2 class="text-lg font-medium mr-auto">Edit Post</h2>
             <form action="{{ route('blog.update', ['blog' => $model->id]) }}" method="post" enctype="multipart/form-data">
                 {{ method_field('PUT') }}
 

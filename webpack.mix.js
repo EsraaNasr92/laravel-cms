@@ -13,4 +13,20 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .react()
-    .sass('resources/sass/app.scss', 'public/css');
+    .sass('resources/sass/app.scss', 'public/css')
+    .sass('resources/sass/style.scss', 'public/css');
+
+
+mix.js("src/js/app.js", "dist/js")
+    .js("src/js/ckeditor-classic.js", "dist/js")
+    .js("src/js/ckeditor-inline.js", "dist/js")
+    .js("src/js/ckeditor-balloon.js", "dist/js")
+    .js("src/js/ckeditor-balloon-block.js", "dist/js")
+    .js("src/js/ckeditor-document.js", "dist/js")
+    .css("dist/css/_app.css", "dist/css/app.css")
+    .options({
+        processCssUrls: false,
+    })
+    .copyDirectory("src/json", "dist/json")
+    .copyDirectory("src/fonts", "dist/fonts")
+    .copyDirectory("src/images", "dist/images");

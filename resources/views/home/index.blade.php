@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
 
-@section('title') {{ 'home' }} @endsection
+@section('title') {{ 'Home' }} @endsection
 
 @section('content')
 

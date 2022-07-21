@@ -1,19 +1,13 @@
 @extends('layouts.app')
 
-@section('content')
+@section('content')   
+    <div class="col-md-8">
+        <h2 class="intro-x font-bold text-2xl xl:text-3xl text-center xl:text-left">Create banner</h2>
 
-<div class="container">
-    <div class="row justify-content-center">
-       
-        <div class="col-md-8">
-            <h1>Create banner</h1>
-
-            <form action="{{ route('banner.store') }}" method="post" enctype="multipart/form-data">
-                @include('admin.banner.partials.fields')
-            </form>
-        </div>
+        <form action="{{ route('banner.store') }}" method="post" enctype="multipart/form-data">
+            @include('admin.banner.partials.fields')
+        </form>
     </div>
-</div>
 @endsection
 
 @section('scripts')

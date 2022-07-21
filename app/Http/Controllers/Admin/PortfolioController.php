@@ -66,7 +66,7 @@ class PortfolioController extends Controller
         $portfolios->save();
 
         return redirect()->route('portfolio.index')     
-        ->with('status', 'The partner has been created');
+        ->with('status', 'The project has been created');
     }
     /**
      * Show the form for editing the specified resource.

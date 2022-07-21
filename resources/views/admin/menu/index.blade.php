@@ -16,7 +16,7 @@
 
         <h2><span>Menus</span></h2>
 
-        <div class="content info-box">		
+        <div class="info-box">		
             @if(count($menus) > 0)		
                 Select a menu to edit: 		
                 <form action="{{url('manage-menus')}}" class="form-inline">
@@ -35,8 +35,8 @@
             @endif 
         </div>
 
-        <div class="row" id="main-row">				
-            <div class="col-sm-3 cat-form @if(count($menus) == 0) disabled @endif">
+        <div class="grid grid-cols-12 gap-6" id="main-row">				
+            <div class="col-span-12 2xl:col-span-3 cat-form @if(count($menus) == 0) disabled @endif">
             <h3><span>Add Menu Items</span></h3>			
 
             <div class="panel-group" id="menu-items">
@@ -111,7 +111,7 @@
      </div>
 
 
-        <div class="col-sm-9 cat-view">
+        <div class="col-span-12 2xl:col-span-9 cat-view">
             <h3><span>Menu Structure</span></h3>
             @if($selectedMenu == '')
                 <h4>Create New Menu</h4>
