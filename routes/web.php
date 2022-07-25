@@ -59,6 +59,12 @@ Route::resource('/admin/users', 'App\Http\Controllers\Admin\UsersController', ['
     'show', 'create', 'store'
 ]]);
 
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/admin/settings',[App\Http\Controllers\Admin\SettingsController::class, 'showChangePasswordGet'])->name('changePasswordGet');
+    Route::post('/admin/settings',[App\Http\Controllers\Admin\SettingsController::class, 'changePasswordPost'])->name('changePasswordPost');
+});
+
+Route::post('/admin/settings',[App\Http\Controllers\Admin\SettingsController::class, 'upload'])->name('changePasswordPost');
 
 Route::resource('/admin/menu', 'App\Http\Controllers\Admin\MenuController');
 Route::get('manage-menus/{id?}',[App\Http\Controllers\Admin\MenuController::class,'index']);
@@ -89,6 +95,5 @@ Route::get('/portfolio/{slug}', [App\Http\Controllers\PortfolioController::class
 Route::get('/artisan-link', function () {
     Artisan::call('storage:link');
 });
-
 
 

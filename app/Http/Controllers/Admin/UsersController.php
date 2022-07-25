@@ -14,7 +14,7 @@ class UsersController extends Controller
 
     public function __construct(){
         $this->middleware('admin');
-        //$this->middleware('can:manageUsers,App\User');
+        $this->middleware('can:manageUsers,App\Models\User');
     }
 
     /**
@@ -64,10 +64,10 @@ class UsersController extends Controller
             return redirect()->route('users.index');
         }
 
-        $user->roles()->syncWithoutDetaching($request->roles);
+        $user->roles()->sync($request->roles);
         
         return redirect()->route('users.index')
-        ->with('status', '$user->name was updated');
+        ->with('status', "$user->name was updated");
     }
 
     /**

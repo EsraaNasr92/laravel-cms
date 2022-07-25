@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'image',
     ];
 
     /**
@@ -76,12 +77,12 @@ class User extends Authenticatable
     }
 
     public function hasAnyRole($roles){
-        if(! $this->roles){
+        /*if(! $this->roles){
             return null;
         }
-        return $this->roles()->whereIn('name', $roles)->first();
+        return $this->roles()->whereIn('name', $roles)->first();*/
 
-        /*return null !== $this->roles()->whereIn('name', $roles)->first();*/
+        return null !== $this->roles()->whereIn('name', $roles)->first();
     }
 
     public function hasRole($role){

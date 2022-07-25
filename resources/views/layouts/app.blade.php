@@ -393,7 +393,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="side-menu-light-change-password.html" class="menu">
+                                <a href="side-menu-light-update-profile.html" class="menu">
                                     <div class="menu__icon"> <i data-lucide="activity"></i> </div>
                                     <div class="menu__title"> Change Password </div>
                                 </a>
@@ -651,13 +651,7 @@
                             <div class="side-menu__title"> Post </div>
                         </a>
                     </li>
-                    <li>
-                        <a href="side-menu-light-calendar.html" class="side-menu">
-                            <div class="side-menu__icon"> <i data-lucide="calendar"></i> </div>
-                            <div class="side-menu__title"> Calendar </div>
-                        </a>
-                    </li>
-                    <li class="side-nav__devider my-6"></li>
+                    @can('manageUsers', App\Models\User::class)
                     <li>
                         <a href="javascript:;" class="side-menu">
                             <div class="side-menu__icon"> <i data-lucide="users"></i> </div>
@@ -668,25 +662,22 @@
                         </a>
                         <ul class="">
                             <li>
-                                <a href="side-menu-light-users-layout-1.html" class="side-menu">
+                                <a href="{{route('users.index') }}" class="side-menu">
                                     <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
-                                    <div class="side-menu__title"> Layout 1 </div>
+                                    <div class="side-menu__title"> List </div>
                                 </a>
                             </li>
                             <li>
                                 <a href="side-menu-light-users-layout-2.html" class="side-menu">
                                     <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
-                                    <div class="side-menu__title"> Layout 2 </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="side-menu-light-users-layout-3.html" class="side-menu">
-                                    <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
-                                    <div class="side-menu__title"> Layout 3 </div>
+                                    <div class="side-menu__title"> Add New User </div>
                                 </a>
                             </li>
                         </ul>
                     </li>
+                    @endcan
+                    <li class="side-nav__devider my-6"></li>
+
                     <li>
                         <a href="javascript:;" class="side-menu">
                             <div class="side-menu__icon"> <i data-lucide="trello"></i> </div>
@@ -697,9 +688,9 @@
                         </a>
                         <ul class="">
                             <li>
-                                <a href="side-menu-light-profile-overview-1.html" class="side-menu">
-                                    <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
-                                    <div class="side-menu__title"> Overview 1 </div>
+                                <a href="{{route ('changePasswordPost')}}" class="menu">
+                                    <div class="menu__icon"> <i data-lucide="activity"></i> </div>
+                                    <div class="menu__title"> Change Password </div>
                                 </a>
                             </li>
                             <li>
@@ -1158,7 +1149,12 @@
                     <!-- BEGIN: Account Menu -->
                     <div class="intro-x dropdown w-8 h-8">
                         <div class="dropdown-toggle w-8 h-8 rounded-full overflow-hidden shadow-lg image-fit zoom-in" role="button" aria-expanded="false" data-tw-toggle="dropdown">
-                            <img alt="Midone - HTML Admin Template" src="{{ asset ('dist/images/profile-5.jpg') }}">
+                        @if(Auth::user()->image)
+                            <img class="image rounded-circle" src="{{asset('/uploads/users/'.Auth::user()->image)}}" alt="profile_image">
+                        @else{
+                            <img alt="profile_image" class="rounded-full" src="{{ asset ('dist/images/profile-7.jpg') }}">
+                        }
+                        @endif
                         </div>
                         <div class="dropdown-menu w-56">
                             <ul class="dropdown-content bg-primary text-white">
