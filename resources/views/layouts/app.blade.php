@@ -154,15 +154,15 @@
                     </li>
 
                     <li>
-                        <a href="side-menu-light-file-manager.html" class="menu">
+                        <a href="{{ route('banner.index') }}" class="menu {{ (request()->is('admin/app')) ? 'side-menu--active' : '' }}">
                             <div class="menu__icon"> <i data-lucide="hard-drive"></i> </div>
-                            <div class="menu__title"> File Manager </div>
+                            <div class="menu__title"> Website settings </div>
                         </a>
                     </li>
                     <li>
-                        <a href="side-menu-light-post.html" class="menu">
+                        <a href="{{ route ('gallery.index') }}" class="menu">
                             <div class="menu__icon"> <i data-lucide="file-text"></i> </div>
-                            <div class="menu__title"> Post </div>
+                            <div class="menu__title"> Gallery </div>
                         </a>
                     </li>
                     <li>
@@ -640,15 +640,15 @@
                         </a>
                     </li>
                     <li>
-                        <a href="side-menu-light-file-manager.html" class="side-menu">
+                        <a href="#" class="side-menu {{ (request()->is('admin/app')) ? 'side-menu--active' : '' }}">
                             <div class="side-menu__icon"> <i data-lucide="hard-drive"></i> </div>
-                            <div class="side-menu__title"> File Manager </div>
+                            <div class="side-menu__title"> Website settings </div>
                         </a>
                     </li>
                     <li>
-                        <a href="side-menu-light-post.html" class="side-menu">
+                        <a href="{{ route ('gallery.index') }}" class="side-menu">
                             <div class="side-menu__icon"> <i data-lucide="file-text"></i> </div>
-                            <div class="side-menu__title"> Post </div>
+                            <div class="side-menu__title"> Gallery </div>
                         </a>
                     </li>
                     @can('manageUsers', App\Models\User::class)
@@ -1222,7 +1222,7 @@
         @yield('scripts')
 
 
-        <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+       <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
                 $('.ckeditor').ckeditor();
