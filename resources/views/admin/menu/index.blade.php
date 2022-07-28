@@ -37,74 +37,66 @@
 
         <div class="grid grid-cols-12 gap-6" id="main-row">				
             <div class="col-span-12 2xl:col-span-3 cat-form @if(count($menus) == 0) disabled @endif">
-            <h3><span>Add Menu Items</span></h3>			
+            <h2 class="text-lg font-medium mr-auto">Add Menu Items</h2>			
 
-            <div class="panel-group" id="menu-items">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <a href="#categories-list" data-toggle="collapse" data-parent="#menu-items">Pages <span class="caret pull-right"></span></a>
+
+            <div class="tabs">
+              <div class="tab">
+                <input type="radio" id="rd1" name="rd" class="hidden-input">
+                <label class="tab-label" for="rd1">Pages</label>
+                <div class="tab-content">
+                    <div class="item-list-body">
+                        @foreach($pages as $page)
+                        <p><input type="checkbox" name="select-category[]" value="{{$page->id}}"> {{$page->title}}</p>
+                        @endforeach
+                    </div>	
+                    <div class="item-list-footer">
+                        <label class="btn btn-sm btn-default"><input type="checkbox" id="select-all-categories"> Select All</label>
+                        <button type="button" class="pull-right btn btn-default btn-sm" id="add-categories">Add to Menu</button>
                     </div>
-                <div class="panel-collapse collapse in" id="categories-list">
-                        <div class="panel-body">						
-                            <div class="item-list-body">
-                                @foreach($pages as $page)
-                                <p><input type="checkbox" name="select-category[]" value="{{$page->id}}"> {{$page->title}}</p>
-                                @endforeach
-                            </div>	
-                        <div class="item-list-footer">
-                            <label class="btn btn-sm btn-default"><input type="checkbox" id="select-all-categories"> Select All</label>
-                            <button type="button" class="pull-right btn btn-default btn-sm" id="add-categories">Add to Menu</button>
-                        </div>
-		            </div>	
-            </div>		<!-- End pages -->		
-
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <a href="#posts-list" data-toggle="collapse" data-parent="#menu-items">posts <span class="caret pull-right"></span></a>
+                </div>
+              </div>
+              <div class="tab">
+                <input type="radio" id="rd2" name="rd" class="hidden-input">
+                <label class="tab-label" for="rd2">Posts</label>
+                <div class="tab-content">
+                <div class="item-list-body">
+                    @foreach($model as $post)
+                      <p><input type="checkbox" name="select-post[]" value="{{$post->id}}"> {{$post->title}}</p>
+                    @endforeach
+                    </div>	
+                    <div class="item-list-footer">
+                      <label class="btn btn-sm btn-default"><input type="checkbox" id="select-all-posts"> Select All</label>
+                      <button type="button" id="add-posts" class="pull-right btn btn-default btn-sm">Add to Menu</button>
                     </div>
-                    <div class="panel-collapse collapse" id="posts-list">
-                        <div class="panel-body">						
-                            <div class="item-list-body">
-                            @foreach($model as $post)
-                            
-                                <p><input type="checkbox" name="select-post[]" value="{{$post->id}}"> {{$post->title}}</p>
-                            @endforeach
-                            </div>	
-                            <div class="item-list-footer">
-                            <label class="btn btn-sm btn-default"><input type="checkbox" id="select-all-posts"> Select All</label>
-                            <button type="button" id="add-posts" class="pull-right btn btn-default btn-sm">Add to Menu</button>
-                        </div>
-                </div>						
-            </div><!-- End Posts-->
+                </div>
+              </div>
+
+              <div class="tab">
+                <input type="radio" id="rd3" name="rd" class="hidden-input">
+                <label class="tab-label" for="rd3">Custom link</label>
+                <div class="tab-content">
+                  <div class="item-list-body">
+                      <div class="form-group">
+                        <label>URL</label>
+                        <input type="url" id="url" class="form-control" placeholder="https://">
+                      </div>
+                      <div class="form-group">
+                        <label>Link Text</label>
+                        <input type="text" id="linktext" class="form-control" placeholder="">
+                      </div>
+                      </div>	
+                      <div class="item-list-footer">
+                        <button type="button" class="pull-right btn btn-default btn-sm" id="add-custom-link">Add to Menu</button>
+                      </div>
+                  </div>
+              </div>
 
 
-
-
-
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <a href="#custom-links" data-toggle="collapse" data-parent="#menu-items">Custom Links <span class="caret pull-right"></span></a>
-                    </div>
-                    <div class="panel-collapse collapse" id="custom-links">
-                        <div class="panel-body">						
-                            <div class="item-list-body">
-                            <div class="form-group">
-                                <label>URL</label>
-                                <input type="url" id="url" class="form-control" placeholder="https://">
-                            </div>
-                            <div class="form-group">
-                                <label>Link Text</label>
-                                <input type="text" id="linktext" class="form-control" placeholder="">
-                                </div>
-                            </div>	
-                            <div class="item-list-footer">
-                                <button type="button" class="pull-right btn btn-default btn-sm" id="add-custom-link">Add to Menu</button>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>	
-            </div>	
+              <div class="tab">
+                <input type="radio" id="rd4" name="rd" class="hidden-input">
+                <label for="rd4" class="tab-close">Close others &times;</label>
+              </div>
             
             
         </div>
@@ -112,7 +104,7 @@
 
 
         <div class="col-span-12 2xl:col-span-9 cat-view">
-            <h3><span>Menu Structure</span></h3>
+          <h2 class="text-lg font-medium mr-auto">Menu Structure</h2>
             @if($selectedMenu == '')
                 <h4>Create New Menu</h4>
                 <form method="post" action="{{url('create-menu')}}">
@@ -142,38 +134,35 @@
                           
                             @foreach($menuitems as $key=>$menuitem)
                             <li data-id="{{$menuitem->id}}">
-                                <span class="menu-item-bar">
-                                  <i class="fa fa-arrows"></i> 
-                                  @if(!empty($menuitem->name)) {{$menuitem->name}} @else {{$menuitem->title}} @endif 
-                                  <a href="#collapseMenu{{$menuitem->id}}" class="pull-right" data-toggle="collapse">
-                                  <i class="caret"></i></a>
-                                </span>
-                                
-                            
-                                  <div class="collapse" id="collapseMenu{{$menuitem->id}}">
-                                    <div class="input-box">
-                                      <form method="post" action="{{url('update-menuitem')}}/{{$menuitem->id}}">
-                                          {{csrf_field()}}
-                                          <div class="form-group">
-                                          <label>Link Name</label>
-                                          <input type="text" name="title" value="@if(!empty($menuitem->name)) {{$menuitem->name}} @else {{$menuitem->title}} @endif" class="form-control">
-                                          </div>
-                                          @if($menuitem->type == 'custom')
-                                          <div class="form-group">
-                                            <label>URL</label>
-                                            <input type="text" name="slug" value="{{$menuitem->slug}}" class="form-control">
-                                          </div>					
-                                          <div class="form-group">
-                                            <input type="checkbox" name="target" value="_blank" @if($menuitem->target == '_blank') checked @endif> Open in a new tab
-                                          </div>
-                                          @endif
-                                          <div class="form-group">
-                                          <button class="btn btn-sm btn-primary">Save</button>
-                                          <a href="{{url('delete-menuitem')}}/{{$menuitem->id}}/{{$key}}" class="btn btn-sm btn-danger">Delete</a>
-                                          </div>
-                                      </form>
+
+                              <div class="tab mt-4">
+                                <input type="radio" id="{{$menuitem->id}}" name="rd" class="hidden-input">
+                                <label class="tab-label" for="{{$menuitem->id}}"> @if(!empty($menuitem->name)) {{$menuitem->name}} @else {{$menuitem->title}} @endif </label>
+                                  <div class="tab-content">
+                                      <div class="item-list-body" id="{{$menuitem->id}}">
+                                          <form method="post" action="{{url('update-menuitem')}}/{{$menuitem->id}}">
+                                              {{csrf_field()}}
+                                              <div class="form-group">
+                                              <label>Link Name</label>
+                                              <input type="text" name="title" value="@if(!empty($menuitem->name)) {{$menuitem->name}} @else {{$menuitem->title}} @endif" class="form-control">
+                                              </div>
+                                              @if($menuitem->type == 'custom')
+                                              <div class="form-group">
+                                                <label>URL</label>
+                                                <input type="text" name="slug" value="{{$menuitem->slug}}" class="form-control">
+                                              </div>					
+                                              <div class="form-group">
+                                                <input type="checkbox" name="target" value="_blank" @if($menuitem->target == '_blank') checked @endif> Open in a new tab
+                                              </div>
+                                              @endif
+                                              <div class="form-group mt-4">
+                                              <button class="btn btn-sm btn-primary">Save</button>
+                                              <a href="{{url('delete-menuitem')}}/{{$menuitem->id}}/{{$key}}" class="btn btn-sm btn-danger">Delete</a>
+                                              </div>
+                                          </form>
+                                      </div>
                                   </div>
-                                </div>
+                              </div>
 
                             <ul>  
                                   
@@ -185,16 +174,14 @@
 
 
                                   <li data-id="{{$child->id}}"> 
-                                    <span class="menu-item-bar">
-                                      <i class="fa fa-arrows"></i> 
-                                      @if(!empty($child->name)) {{$child->name}} @else {{$child->title}} @endif 
-                                      <a href="#collapseChild{{$child->id}}" class="pull-right" data-toggle="collapse">
-                                      <i class="caret"></i></a>
-                                    </span>
-                                    
-                                        <div class="collapse" id="collapseChild{{$child->id}}">
-                                          
-                                              <form method="post" action="{{url('update-menuitem')}}/{{$child->id}}">
+
+
+                                  <div class="tab mt-4 childMenu">
+                                    <input type="radio" id="{{$child->id}}" name="rd" class="hidden-input">
+                                    <label class="tab-label" for="{{$child->id}}">@if(!empty($child->name)) {{$child->name}} @else {{$child->title}} @endif </label>
+                                      <div class="tab-content">
+                                          <div class="item-list-body" id="{{$menuitem->id}}">
+                                            <form method="post" action="{{url('update-menuitem')}}/{{$child->id}}">
                                                   {{csrf_field()}}
                                                   <div class="form-group">
                                                   <label>Link Name</label>
@@ -203,19 +190,23 @@
                                                   @if($child->type == 'custom')
                                                   <div class="form-group">
                                                     <label>URL</label>
-                                                    <input type="text" name="slug" value="{{$child->url}}" class="form-control">
+                                                    {{--<input type="text" name="slug" value="{{$child->url}}" class="form-control">--}}
                                                   </div>					
                                                   <div class="form-group">
                                                     <input type="checkbox" name="target" value="_blank" @if($child->target == '_blank') checked @endif> Open in a new tab
                                                   </div>
                                                   @endif
-                                                  <div class="form-group">
+                                                  <div class="form-group mt-4">
                                                   <button class="btn btn-sm btn-primary">Save</button>
                                                   <a href="{{url('delete-menuitem')}}/{{$child->id}}/{{$key}}/{{$in}}" class="btn btn-sm btn-danger">Delete</a>
                                                   </div>
                                               </form>
-                                          
-                                        </div>
+                                          </div>
+                                      </div>
+                                  </div>
+
+
+
                                       @endforeach
                                     
                                       @endforeach
@@ -259,7 +250,75 @@
 
 
 
+
 <style>
+   .hidden-input {
+	 position: absolute;
+	 opacity: 0;
+	 z-index: -1;
+  }
+    /* Accordion styles */
+    .tabs {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.5);
+    }
+    .tab {
+      width: 100%;
+      color: white;
+      overflow: hidden;
+    }
+    .tab-label {
+      display: flex;
+      justify-content: space-between;
+      padding: 1em;
+      background: #1e40af ;
+      font-weight: bold;
+      cursor: pointer;
+      /* Icon */
+    }
+    .tab-label:hover {
+      background: #1a252f;
+    }
+    .tab-label::after {
+      content: "❯";
+      width: 1em;
+      height: 1em;
+      text-align: center;
+      transition: all 0.35s;
+    }
+    .tab-content {
+      max-height: 0;
+      padding: 0 1em;
+      color: #2c3e50;
+      background: white;
+      transition: all 0.35s;
+    }
+    .tab-close {
+      display: flex;
+      justify-content: flex-end;
+      padding: 1em;
+      font-size: 0.75em;
+      background: #1e40af;
+      cursor: pointer;
+    }
+    .tab-close:hover {
+      background: #1a252f;
+    }
+    input:checked + .tab-label {
+      background: #1a252f;
+    }
+    input:checked + .tab-label::after {
+      transform: rotate(90deg);
+    }
+    input:checked ~ .tab-content {
+      max-height: 100vh;
+      padding: 1em;
+    }
+    .tab.mt-4.childMenu {
+      width: 96%;
+      margin-left: 43px;
+    }
   .item-list,.info-box{background: #fff;padding: 10px;}
   .item-list-body{max-height: 300px;overflow-y: scroll;}
   .panel-body p{margin-bottom: 5px;}
@@ -288,94 +347,10 @@
 </style>
 
 
-
-@if($selectedMenu)
-<script>
-  $('#add-categories').click(function(){
-  var menuid = <?=$selectedMenu->id?>;
-  var n = $('input[name="select-category[]"]:checked').length;
-  var array = $('input[name="select-category[]"]:checked');
-  var ids = [];
-  for(i=0;i<n;i++){
-    ids[i] =  array.eq(i).val();
-  }
-  if(ids.length == 0){
-	return false;
-  }
-  $.ajax({
-	type:"get",
-	data: {menuid:menuid,ids:ids},
-	url: "{{url('add-categories-to-menu')}}",				
-	success:function(res){				
-      location.reload();
-	}
-  })
-})
-$('#add-posts').click(function(){
-  var menuid = <?=$selectedMenu->id?>;
-  var n = $('input[name="select-post[]"]:checked').length;
-  var array = $('input[name="select-post[]"]:checked');
-  var ids = [];
-  for(i=0;i<n;i++){
-	ids[i] =  array.eq(i).val();
-  }
-  if(ids.length == 0){
-	return false;
-  }
-  $.ajax({
-	type:"get",
-	data: {menuid:menuid,ids:ids},
-	url: "{{url('add-post-to-menu')}}",				
-	success:function(res){
-  	  location.reload();
-	}
-  })
-})
-
-   $("#add-custom-link").click(function(){
-  var menuid = <?=$selectedMenu->id?>;
-  var url = $('#url').val();
-  var link = $('#linktext').val();
-  if(url.length > 0 && link.length > 0){
-	$.ajax({
-	  type:"get",
-	  data: {menuid:menuid,url:url,link:link},
-	  url: "{{url('add-custom-link')}}",				
-	  success:function(res){
-	    location.reload();
-	  }
-	})
-  }
-});
-
-var group = $("#menuitems").sortable({
-  group: 'serialization',
-  onDrop: function ($item, container, _super) {
-    var data = group.sortable("serialize").get();	    
-    var jsonString = JSON.stringify(data, null, '');
-    $('#serialize_output').text(jsonString);
-  	  _super($item, container);
-  }
-});
-
-
-
-$('#saveMenu').click(function(){
-  var menuid = <?=$selectedMenu->id?>;
-  var location = $('input[name="location"]:checked').val();
-  var newContent = $("#serialize_output").text();
-  var data = JSON.parse($("#serialize_output").text());	
-  $.ajax({
-    type:"get",
-	data: {menuid:menuid,data:data,location:location},
-	url: "{{url('save-menu')}}",				
-	success:function(res){
-	  window.location.reload();
-	}
-  })	
-})
-</script>
-@endif
-
 @endsection
 
+@if($selectedMenu)
+  @section('scripts')
+      @include('admin.menu.partials.scripts')
+  @endsection
+@endif

@@ -19,8 +19,19 @@
        
     <!-- END: CSS Assets-->
 
+   
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+    
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+    
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sortable/0.9.13/jquery-sortable.js"></script>
+    
+
+   <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js" integrity="sha512-k6/Bkb8Fxf/c1Tkyl39yJwcOZ1P4cRrJu77p83zJjN2Z55prbFHxPs9vN7q3l3+tSMGPDdoH51AEU8Vgo1cgAA==" crossorigin="anonymous"></script>
@@ -29,7 +40,7 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sortable/0.9.13/jquery-sortable.js"></script>
-
+-->
     <!-- Styles 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
@@ -675,6 +686,13 @@
                             </li>
                         </ul>
                     </li>
+
+                    <li>
+                        <a href="{{ route ('menu.index') }}" class="side-menu">
+                            <div class="side-menu__icon"> <i data-lucide="file-text"></i> </div>
+                            <div class="side-menu__title"> Menu </div>
+                        </a>
+                    </li>
                     @endcan
                     <li class="side-nav__devider my-6"></li>
 
@@ -1221,8 +1239,9 @@
         
         @yield('scripts')
 
+        
 
-       <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+        <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
                 $('.ckeditor').ckeditor();
@@ -1231,8 +1250,13 @@
 
 
 
-        <!-- Scripts -->
-        <script src="{{ asset('dist/js/app.js') }}" defer></script>
+
+
+                    <!-- Scripts -->
+                    <script src="{{ asset('dist/js/app.js') }}"></script>
+
+                    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+
     </body>
 
 </body>
